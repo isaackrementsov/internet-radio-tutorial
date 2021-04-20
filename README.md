@@ -70,7 +70,7 @@ Once those commands finish, enable and start the service by entering the followi
 ```bash
 sudo systemctl enable mopidy
 sudo usermod -aG video mopidy
-sudo sytemctl start mopidy
+sudo systemctl start mopidy
 ```
 Next, you'll want to set up Iris, a web interface for Mopidy. This can also be done in the shell with the following command:
 ```bash
@@ -109,6 +109,29 @@ Now, you can access the Iris web interface by going to `http://your_ip:6680/iris
 You can leave all of these settings as their default values (yours might not match those shown above; that's OK) and click the "Save" button.
 Once you do, you'll see a "Now Playing" page and several options in a vertical menu on the left.
 You can click the "Settings" option towards the bottom to connect a Spotify, LastFM, or Genius account.
+
+#### Connecting YouTube Music
+The simplest way to listen to music on Mopidy is using YouTube Music. Simply run each of the following two commands in terminal:
+```bash
+sudo pip3 install Mopidy-YTMusic
+sudo systemctl restart mopidy
+```
+
+#### Connecting YouTube
+To listen to any video on YouTube, install the Mopidy-Youtube extension with the following command:
+```bash
+sudo pip3 install Mopidy-YouTube
+```
+Then, edit Mopidy's configuration with `sudo nano /etc/mopidy/mopidy.conf` and paste the following lines:
+```bash
+[youtube]
+enabled = true
+```
+After exiting the text editor, restart the Mopidy service using
+```bash
+sudo systemctl restart mopidy
+```
+
 #### Connecting Spotify
 If you'd like to connect Spotify, you will first need to authorize the service by clicking the "Authenticate Mopidy with Spotify" button on [this](https://mopidy.com/ext/spotify/) webpage and agreeing to the listed terms (you also need to be logged in to Spotify). Then, make note of the configuration highlighted below:
 <br/><br/>
